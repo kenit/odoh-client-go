@@ -1,0 +1,5 @@
+target: odoh.cloudflare-dns.com
+proxy: dns-proxy.kenit.me
+listen:
+  host: 127.0.0.1
+  port: 53

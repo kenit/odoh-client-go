@@ -1,6 +1,6 @@
-module github.com/cloudflare/odoh-client-go
+module github.com/kenit/odoh-client-go
 
-go 1.14
+go 1.15
 
 require (
 	cloud.google.com/go/logging v1.1.2
@@ -9,4 +9,5 @@ require (
 	github.com/elastic/go-elasticsearch/v8 v8.0.0-20201202142044-1e78b5bf06b1
 	github.com/miekg/dns v1.1.35
 	github.com/urfave/cli v1.22.5
+	gopkg.in/yaml.v2 v2.2.2
 )
