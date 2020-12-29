@@ -3,3 +3,7 @@ proxy: dns-proxy.kenit.me
 listen:
   host: 127.0.0.1
   port: 53
+redis:
+  host: 172.17.0.1
+  port: 6379
+  db: 12

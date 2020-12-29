@@ -14,6 +14,12 @@ type Config struct {
 		Host string `yaml:"host"`
 		Port int64  `yaml:"port"`
 	}
+	Redis *struct {
+		Host string `yaml:"host"`
+		Port int64  `yaml:"port"`
+		DB   int   `yaml:"db"`
+		TLS  int64  `yaml:"tls"`
+	}
 }
 
 var config = Config{}

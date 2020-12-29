@@ -7,7 +7,9 @@ import (
 	"net/http"
 )
 
-func GetHandler(target string, proxy string) (func(dns.ResponseWriter, *dns.Msg), error) {
+type DnsHandler func(dns.ResponseWriter, *dns.Msg)
+
+func GetHandler(target string, proxy string) (DnsHandler, error) {
 	odohConfigs, err := fetchTargetConfigs(target)
 	if err != nil {
 		return nil, err
@@ -37,7 +39,7 @@ func GetHandler(target string, proxy string) (func(dns.ResponseWriter, *dns.Msg)
 			}
 
 			client := http.Client{}
-			odohMessage, err := resolveObliviousQuery(odohQuery, true, "odoh.cloudflare-dns.com", proxy, &client)
+			odohMessage, err := resolveObliviousQuery(odohQuery, true, target, proxy, &client)
 			if err != nil {
 				fmt.Println(err)
 				return
