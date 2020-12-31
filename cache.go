@@ -10,20 +10,13 @@ import (
 	"github.com/miekg/dns"
 )
 
-func init(){
-	if config.Redis != nil {
-		rdb := redis.NewClient(&redis.Options{
-			Addr:     fmt.Sprintf("%s:%d", config.Redis.Host, config.Redis.Port),
-			Password: "", // no password set
-			DB:       config.Redis.DB, // use default DB
-		})
-		adapters = append(adapters, RedisCache(rdb))
-	}
-}
-
 func RedisCache(rdb *redis.Client) Adapter {
+
 	ctx := context.Background()
 	return func(next commands.DnsHandler) commands.DnsHandler {
+		if rdb == nil{
+			return next
+		}
 
 		return func(w dns.ResponseWriter, r *dns.Msg) {
 				fmt.Println(len(r.Question))

@@ -6,7 +6,7 @@ import (
 	"net"
 )
 
-var adapters = []Adapter{}
+
 
 type Adapter func(handler commands.DnsHandler) commands.DnsHandler
 
@@ -15,10 +15,6 @@ func Adapt(h commands.DnsHandler, adapters ...Adapter) commands.DnsHandler {
 		h = adapter(h)
 	}
 	return h
-}
-
-func AddAdapter(a Adapter){
-	adapters = append(adapters, a)
 }
 
 type WrappedResponseWriter struct{
